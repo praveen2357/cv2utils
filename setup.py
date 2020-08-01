@@ -1,3 +1,11 @@
+"""
+/**
+ * @author praveen kumar yalal
+ * @email praveen2357@gmail.com
+ * @desc [description]
+ */
+"""
+
 from setuptools import setup
 
 with open("README.md", "r") as fh:

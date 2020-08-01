@@ -1,6 +1,12 @@
-import numpy as np
-import cv2 as cv
+"""
+/**
+ * @author praveen kumar yalal
+ * @email praveen2357@gmail.com
+ * @desc General image processing utilities
+ */
 
+ ref: https://docs.opencv.org/3.4/d3/dc1/tutorial_basic_linear_transform.html
+"""
 
 def apply_zoomout(im, scale):
     """
@@ -77,34 +83,17 @@ def letterbox(im, o_w=None, o_h=None):
     return im_ltrbox
 
 
-def yolo_resize(im, bboxes, target_size):
+def stitch_images(images):
     """
-    resize the image and respective bbox
-    im: opencv ndarray
-    bbox: x,y,width,height
+    combine all images into a single large image
+    images: list of image path locations
     """
-    h, w, d = im.shape
-    im_ltrbox = letterbox(im, target_size, target_size)
-    h_l, w_l, _ = im_ltrbox.shape
-    # check if the image requires padding
-    padding = 0
-    if h_l < target_size:
-        # add vertical padding
-        padding = target_size - h_l
-        y_t, x_t = padding/2, 0
-        
-    if w_l < target_size:
-        # add horizontal padding
-        padding = target_size - w_l
-        y_t, x_t = 0, padding/2
-    # apply translation
-    T = np.float32([[1, 0, x_t], [0, 1, y_t]])
-    im_tr = cv.warpAffine(im_ltrbox, T, (target_size, target_size))
-    # apply resize + padding to the bboxes
-    bboxes_tr = np.array(bboxes,dtype=np.float32)
-    bboxes_tr[:,0] = bboxes_tr[:,0] * ((w_l*1.0)/w) + x_t
-    bboxes_tr[:,1] = bboxes_tr[:,1] * ((h_l*1.0)/h) + y_t
-    bboxes_tr[:,2] = bboxes_tr[:,2] * ((w_l*1.0)/w)
-    bboxes_tr[:,3] = bboxes_tr[:,3] * ((h_l*1.0)/h)
-    return im_tr, bboxes_tr
+    pass
+
+
+def apply_color_temperature(im, temp):
+    """
+    add color temperature effect to the image
+    """
+    pass
 
