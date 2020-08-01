@@ -77,7 +77,7 @@ def letterbox(im, o_w=None, o_h=None):
     return im_ltrbox
 
 
-def yoloresize(im, bboxes, target_size):
+def yolo_resize(im, bboxes, target_size):
     """
     resize the image and respective bbox
     im: opencv ndarray
